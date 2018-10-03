@@ -1,0 +1,27 @@
+<http://example.com/dataset/1> <http://schema.org/author> <http://example.com/person/1> .
+<http://example.com/person/1> <http://schema.org/name> "Jarno" .
+<http://example.com/person/1> <http://www.w3.org/2000/01/rdf-schema#Type> <http://schema.org/Person> .
+<http://example.com/dataset/1> <http://www.w3.org/2000/01/rdf-schema#Type> <http://schema.org/Dataset> .
+<http://example.com/dataset/1> <http://schema.org/name> "GSE9095" .
+<http://example.com/dataset/1> <http://schema.org/subject> <http://example.com/patient/1> . 
+<http://example.com/dataset/1> <http://schema.org/subject> <http://example.com/patient/2> .
+<http://example.com/dataset/1> <http://schema.org/subject> <http://example.com/patient/3> .
+<http://example.com/dataset/1> <http://schema.org/subject> <http://example.com/patient/4> .
+<http://example.com/patient/1> <http://www.w3.org/2000/01/rdf-schema#Type> <https://health-lifesci.schema.org/Patient> .
+<http://example.com/patient/2> <http://www.w3.org/2000/01/rdf-schema#Type> <https://health-lifesci.schema.org/Patient> .
+<http://example.com/patient/3> <http://www.w3.org/2000/01/rdf-schema#Type> <https://health-lifesci.schema.org/Patient> .
+<http://example.com/patient/4> <http://www.w3.org/2000/01/rdf-schema#Type> <https://health-lifesci.schema.org/Patient> .
+<http://example.com/patient/1> <https://health-lifesci.schema.org/diagnosis> <http://example.com/diagnosis/1> .
+<http://example.com/patient/2> <https://health-lifesci.schema.org/diagnosis> <http://example.com/diagnosis/1> .
+<http://example.com/patient/3> <https://health-lifesci.schema.org/diagnosis> <http://example.com/diagnosis/2> .
+<http://example.com/patient/4> <https://health-lifesci.schema.org/diagnosis> <http://example.com/diagnosis/2> .
+<http://example.com/diagnosis/1> <http://www.w3.org/2000/01/rdf-schema#Type> <https://health-lifesci.schema.org/diagnosis> .
+<http://example.com/diagnosis/2> <http://www.w3.org/2000/01/rdf-schema#Type> <https://health-lifesci.schema.org/diagnosis> .
+<http://example.com/diagnosis/1> <http://www.w3.org/2000/01/rdf-schema#label> "cancer" .
+<http://example.com/diagnosis/2> <http://www.w3.org/2000/01/rdf-schema#label> "parkinson" .
+<http://example.com/patient/1> <https://health-lifesci.schema.org/MedicalCondition> <http://example.com/MedicalCondition/2> .
+<http://example.com/patient/3> <https://health-lifesci.schema.org/MedicalCondition> <http://example.com/MedicalCondition/2> .
+<http://example.com/patient/2> <https://health-lifesci.schema.org/MedicalCondition> <http://example.com/MedicalCondition/2> .
+<http://example.com/patient/4> <https://health-lifesci.schema.org/MedicalCondition> <http://example.com/MedicalCondition/2> .
+<http://example.com/MedicalCondition/1> <http://www.w3.org/2000/01/rdf-schema#label> "No legs" . 
+<http://example.com/MedicalCondition/2> <http://www.w3.org/2000/01/rdf-schema#label> "No arms" .
