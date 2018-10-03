@@ -2,8 +2,18 @@ import pycurl
 from io import BytesIO
 
 reposetorie = "420"
-query = ["PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0D%0APREFIX+ns1%3A+%3Chttps%3A%2F%2Fhealth-lifesci.schema.org%2F%3E%0D%0A%0D%0A" \
-"select+%3Fderp+where+%7B+%0D%0A%09%3Fderp+rdfs%3AType+ns1%3APatient+%0D%0A%7D+limit+100+%0A"]
+query = ["PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0D%0APREFIX+ns1%3A+%3Chttps%3A%2F%2Fhealth-lifesci.schema.org%2F%3E%0D%0A%0D%0Aselect+%28COUNT+%28%2A%29+as+%3Fcount%29+WHERE+%7B%0D%0A%09%3Fpatient+rdfs%3AType+ns1%3APatient+.%0D%0A++++%3Fpatient+ns1%3Adiagnosis+%3Fziekte.%0D%0A++++%3Fziekte+rdfs%3Alabel+%22cancer%22%0D%0A%7D%0D%0A"
+         , "PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0D%0APREFIX+ns1%3A+%3Chttps%3A%2F%2Fhealth-lifesci.schema.org%2F%3E%0D%0A%0D%0Aselect+%28COUNT+%28%2A%29+as+%3Fcount%29+WHERE+%7B%0D%0A%09%3Fpatient+rdfs%3AType+ns1%3APatient+.%0D%0A++++%3Fpatient+ns1%3Adiagnosis+%3Fziekte.%0D%0A++++%3Fziekte+rdfs%3Alabel+%22parkison%22%0D%0A%7D%0D%0A"
+         ,"PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0D%0APREFIX+ns1%3A+%3Chttps%3A%2F%2Fhealth-lifesci.schema.org%2F%3E%0D%0A%0D%0Aselect+%28COUNT+%28%2A%29+as+%3Fcount%29+WHERE+%7B%0D%0A%09%3Fpatient+rdfs%3AType+ns1%3APatient+.%0D%0A++++%3Fpatient+ns1%3AMedicalCondition+%3Fledematen+.%0D%0A++++%3Fledematen+rdfs%3Alabel+%22No+arms%22%0D%0A%7D"
+         ,"PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0D%0APREFIX+ns1%3A+%3Chttps%3A%2F%2Fhealth-lifesci.schema.org%2F%3E%0D%0A%0D%0Aselect+%28COUNT+%28%2A%29+as+%3Fcount%29+WHERE+%7B%0D%0A%09%3Fpatient+rdfs%3AType+ns1%3APatient+.%0D%0A++++%3Fpatient+ns1%3AMedicalCondition+%3Fledematen+.%0D%0A++++%3Fledematen+rdfs%3Alabel+%22No+benen%22%0D%0A%7D%0D%0A"
+         ,"PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0D%0APREFIX+ns1%3A+%3Chttps%3A%2F%2Fhealth-lifesci.schema.org%2F%3E%0D%0A%0D%0Aselect+%28COUNT+%28%2A%29+as+%3Fcount%29+WHERE+%7B%0D%0A%09%3Fpatient+rdfs%3AType+ns1%3APatient+.%0D%0A++++%3Fpatient+ns1%3Adiagnosis+%3Fziekte.%0D%0A++++%3Fziekte+rdfs%3Alabel+%22cancer%22+.%0D%0A++++%3Fpatient+ns1%3AMedicalCondition+%3Fledematen+.%0D%0A++++%3Fledematen+rdfs%3Alabel+%22No+arms%22%0D%0A%7D"
+         , "PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0D%0APREFIX+ns1%3A+%3Chttps%3A%2F%2Fhealth-lifesci.schema.org%2F%3E%0D%0A%0D%0Aselect+%28COUNT+%28%2A%29+as+%3Fcount%29+WHERE+%7B%0D%0A%09%3Fpatient+rdfs%3AType+ns1%3APatient+.%0D%0A++++%3Fpatient+ns1%3Adiagnosis+%3Fziekte.%0D%0A++++%3Fziekte+rdfs%3Alabel+%22parkison%22+.%0D%0A++++%3Fpatient+ns1%3AMedicalCondition+%3Fledematen+.%0D%0A++++%3Fledematen+rdfs%3Alabel+%22No+legs%22%0D%0A%7D%0D%0A"]
+#query zoekt naar de hoeveelheid patienten met kanker
+#query zoekt naar de hoeveelheid patienten met parkison
+#query zoekt naar de hoeveelheid patienten zonder armen
+#query zoekt naar de hoeveelheid patienten zonder benen
+#query zoekt naar de hoeveelheid patienten met kanker en geen armen
+#query zoekt naar de hoeveelheid patienten met parkison en geen benen
 
 for q in query:
     url = "http://localhost:7200/repositories/"+reposetorie+"?name=&infer=true&sameAs=false&" \
